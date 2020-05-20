@@ -25,12 +25,12 @@ AFRAME.registerComponent('look-controls', {
 
   init: function () {
     this.deltaYaw = 0;
-    this.previousHMDPosition = new THREE.Vector3();
-    this.hmdQuaternion = new THREE.Quaternion();
-    this.magicWindowAbsoluteEuler = new THREE.Euler();
-    this.magicWindowDeltaEuler = new THREE.Euler();
-    this.position = new THREE.Vector3();
-    this.magicWindowObject = new THREE.Object3D();
+    this.previousHMDPosition = new window.THREE.Vector3();
+    this.hmdQuaternion = new window.THREE.Quaternion();
+    this.magicWindowAbsoluteEuler = new window.THREE.Euler();
+    this.magicWindowDeltaEuler = new window.THREE.Euler();
+    this.position = new window.THREE.Vector3();
+    this.magicWindowObject = new window.THREE.Object3D();
     this.rotation = {};
     this.deltaRotation = {};
     this.savedPose = null;
@@ -42,8 +42,8 @@ AFRAME.registerComponent('look-controls', {
 
     // To save / restore camera pose
     this.savedPose = {
-      position: new THREE.Vector3(),
-      rotation: new THREE.Euler()
+      position: new window.THREE.Vector3(),
+      rotation: new window.THREE.Euler()
     };
 
     // Call enter VR handler if the scene has entered VR before the event listeners attached.
@@ -55,7 +55,7 @@ AFRAME.registerComponent('look-controls', {
 
     // Only on mobile devices and only enabled if DeviceOrientation permission has been granted.
     if (utils.device.isMobile()) {
-      magicWindowControls = this.magicWindowControls = new THREE.DeviceOrientationControls(this.magicWindowObject);
+      magicWindowControls = this.magicWindowControls = new window.THREE.DeviceOrientationControls(this.magicWindowObject);
       if (typeof DeviceOrientationEvent !== 'undefined' && DeviceOrientationEvent.requestPermission) {
         magicWindowControls.enabled = false;
         if (this.el.sceneEl.components['device-orientation-permission-ui'].permissionGranted) {
