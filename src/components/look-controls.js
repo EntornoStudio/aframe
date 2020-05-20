@@ -128,8 +128,8 @@ AFRAME.registerComponent('look-controls', {
   */
   setupMouseControls: function () {
     this.mouseDown = false;
-    this.pitchObject = new THREE.Object3D();
-    this.yawObject = new THREE.Object3D();
+    this.pitchObject = new window.THREE.Object3D();
+    this.yawObject = new window.THREE.Object3D();
     this.yawObject.position.y = 10;
     this.yawObject.add(this.pitchObject);
   },
@@ -203,7 +203,7 @@ AFRAME.registerComponent('look-controls', {
    * Mouse-drag only enabled if HMD is not active.
    */
   updateOrientation: (function () {
-    var poseMatrix = new THREE.Matrix4();
+    var poseMatrix = new window.THREE.Matrix4();
 
     return function () {
       var object3D = this.el.object3D;
