@@ -19,7 +19,7 @@ AFRAME.registerComponent('look-controls', {
     pointerLockEnabled: {default: false},
     reverseMouseDrag: {default: false},
     reverseTouchDrag: {default: false},
-    gyroEnabled: {default: true},
+    gyroEnabled: {default: false},
     touchEnabled: {default: true}
   },
 
@@ -229,9 +229,17 @@ AFRAME.registerComponent('look-controls', {
       this.updateMagicWindowOrientation();
 
       // On mobile, do camera rotation with touch events and sensors.
-      object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
-      object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
+      //object3D.rotation.x = this.magicWindowDeltaEuler.x + pitchObject.rotation.x;
+      //object3D.rotation.y = this.magicWindowDeltaEuler.y + yawObject.rotation.y;
       object3D.rotation.z = this.magicWindowDeltaEuler.z;
+      
+      if (this.data.gyroEnabled) {
+        el.object3D.rotation.x = hmdEuler.x + pitchObject.rotation.x;
+        el.object3D.rotation.y = hmdEuler.y + yawObject.rotation.y;
+      } else {
+        el.object3D.rotation.x = pitchObject.rotation.x;
+        el.object3D.rotation.y = yawObject.rotation.y;
+      }
     };
   })(),
 
