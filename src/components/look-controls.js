@@ -10,7 +10,7 @@ var PI_2 = Math.PI / 2;
 /**
  * look-controls. Update entity pose, factoring mouse, touch, and WebVR API data.
  */
-module.exports.Component = registerComponent('look-controls', {
+AFRAME.registerComponent('look-controls', {
   dependencies: ['position', 'rotation'],
 
   schema: {
